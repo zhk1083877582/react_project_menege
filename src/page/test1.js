@@ -1,4 +1,7 @@
 import React,{Component}from'react'
+import  '../App.less'
+import { Button } from 'antd'
+
 class test1 extends Component {
   constructor(props){
     super(props);
@@ -19,9 +22,9 @@ class test1 extends Component {
   render(){
     return(
       <div>
-        <p>{this.state.count}</p>
-        <button onClick={this.handleAdd}>加一</button>
-        <button onClick={this.handleRemove.bind(this)}>减一</button>
+        <p className='test_less'>{this.state.count}</p>
+        <Button onClick={this.handleAdd}>加一</Button>
+        <Button onClick={this.handleRemove.bind(this)}>减一</Button>
       </div>
     )
   }
