@@ -1,7 +1,9 @@
 import React,{Component} from 'react';
 import { Row, Col } from 'antd';
+import Navleft from "./components/Navleft";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import "./style/common.less"
 class Admin extends Component{
   constructor(props){
     super(props);
@@ -11,14 +13,17 @@ class Admin extends Component{
   }
   render() {
     return(
-      <Row>
-        <Col span={3}>
-          left
+      <Row className="container">
+        <Col span={3} className="nav_left">
+          <Navleft/>
         </Col>
-        <Col span={21}>
-          <Header></Header>
-          right
-          <Footer></Footer>
+        <Col span={21} className="main">
+          <Header/>
+          <Row className="main_content">
+            right
+            {/* {this.props.children} */}
+          </Row>
+          <Footer/>
         </Col>
       </Row>
     )
