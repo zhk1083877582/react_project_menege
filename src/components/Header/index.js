@@ -2,10 +2,19 @@ import React,{ Component } from "react";
 import { Row, Col } from 'antd';
 import './index.less';
 import Utils from "../../utils/utils";
+import Axios from '../../axios/index'
 class Header extends Component {
+  constructor(props){
+    super(props)
+    this.state={
+      userName:'',
+      sysTime:''
+    }
+  }
   componentWillMount(){
     this.setState({
-      userName:'登陆人名字'
+      userName:'登陆人名字',
+      weacher:''
     })
     setInterval(() => {
       let sysTime = Utils.formatDate(new Date().getTime())
@@ -13,7 +22,22 @@ class Header extends Component {
         sysTime:sysTime
       })
     }, 1000);
+    this.getWeatherAPIDate()
   }
+  getWeatherAPIDate () {
+    console.log(1212)
+    let city = 'beijing'
+    Axios.jsonP({
+      url:'https://api.map.baidu.com/telematics/v3/weather?output=json&ak=1a3cde429f38434f1811a75e1a90310c&location='+ encodeURIComponent(city)
+    }).then((res)=>{
+      console.log(res)
+      let data = res.results[0].weather_data[0];
+      this.setState({
+        weacher:data.wind,
+        weacherPic:data.dayPictureUrl
+      })
+    })
+  } 
   render (){
     return(
       <div className="Header">
@@ -28,8 +52,11 @@ class Header extends Component {
             首页
           </Col>
           <Col span={20} className="weacher"> 
-            <span className="date">2019-09-24</span>
-            <span className="weacher_detail">晴转多云</span>
+            <span className="date">{this.state.sysTime}</span>
+            <span className="weacher_detail">
+              <img src={this.state.weacherPic} alt="白天天气图片" />
+              {this.state.weacher}
+            </span>
           </Col>
         </Row>
       </div>
