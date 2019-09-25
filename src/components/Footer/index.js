@@ -1,5 +1,5 @@
 import React,{ Component } from "react";
-
+import './index.less';
 class Footer extends Component {
   constructor(props){
     super(props)
@@ -9,8 +9,8 @@ class Footer extends Component {
   }
   render (){
     return(
-      <div>
-        {this.state.Footer}
+      <div className="Footer">
+        {this.state.Footer} 
       </div>
     )
   }
