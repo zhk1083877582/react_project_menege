@@ -39,7 +39,7 @@ class Navleft extends Component{
       <div>
         <div className="logo">
           <img src="/assets/logo.svg" alt="logo"/>
-          <h1>React系统</h1>
+          <h1>React</h1>
         </div>
 
         <Menu theme="dark">
