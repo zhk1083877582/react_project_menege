@@ -1,5 +1,5 @@
 import React,{ Component } from "react";
-import { Card, Icon, Button, Spin, Alert } from 'antd'
+import { Card, Icon, Spin, Alert } from 'antd'
 import './index.less';
 import '../ui.less';
 class Loading extends Component {
