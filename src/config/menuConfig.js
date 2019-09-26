@@ -20,6 +20,10 @@ export default [
         key:'/admin/ui/Loading'
       },
       {
+        title:'通知提示message',
+        key:'/admin/ui/message'
+      },
+      {
         title:'通知提醒',
         key:'/admin/ui/notification'
       },
