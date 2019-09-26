@@ -28,6 +28,10 @@ export default [
         key:'/admin/ui/notification'
       },
       {
+        title:'Tabs',
+        key:'/admin/ui/tabs'
+      },
+      {
         title:'图片画廊',
         key:'/admin/ui/gallery'
       },

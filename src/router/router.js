@@ -12,6 +12,7 @@ import Bottons from '../pages/ui/bottons'
 import Modals from '../pages/ui/modals'
 import Loading from '../pages/ui/Loading'
 import Message from '../pages/ui/message'
+import Tabs from '../pages/ui/tabs'
 import Notification from '../pages/ui/notification'
 import Gallery from '../pages/ui/gallery'
 import Carousel from '../pages/ui/carousel'
@@ -35,6 +36,7 @@ export default class IRouter extends Component{
                 <Route path='/admin/ui/notification' component={ Notification }/>
                 <Route path='/admin/ui/gallery' component={ Gallery }/>
                 <Route path='/admin/ui/carousel' component={ Carousel }/>
+                <Route path='/admin/ui/tabs' component={ Tabs } />
                 <Route path='' component={ Nomatch } />
               </Switch>
             </Admin>
