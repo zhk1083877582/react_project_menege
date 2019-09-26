@@ -6,7 +6,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import "./style/common.less"
 
-import Home from './pages/Home/index'
+
 class Admin extends Component{
   constructor(props){
     super(props);
@@ -23,8 +23,8 @@ class Admin extends Component{
         <Col span={21} className="main">
           <Header/>
           <Row className="main_content">
-            <Home/>
-            {/* {this.props.children} */}
+            {/* <Home/> */}
+            {this.props.children}
           </Row>
           <Footer/>
         </Col>
