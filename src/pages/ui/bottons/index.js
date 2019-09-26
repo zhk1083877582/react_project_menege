@@ -1,6 +1,6 @@
 import React,{ Component } from "react";
 import { Card, Button, Group, Icon, Radio } from "antd";
-
+import '../ui.less'
 import './index.less';
 class Buttons extends Component {
   constructor(props){
@@ -35,7 +35,7 @@ class Buttons extends Component {
     const RadioGroup = Radio.Group
     return(
       <div className="Buttons">
-        <Card title="基础按钮">
+        <Card title="基础按钮" className="Card_wrap">
           <Button type="primary">Primary</Button>
           <Button>Default</Button>
           <Button type="dashed">Dashed</Button>
@@ -44,7 +44,7 @@ class Buttons extends Component {
           <Button type="link">Link</Button>
         </Card>
 
-        <Card title="图形按钮">
+        <Card title="图形按钮" className="Card_wrap">
           <Button type="primary" shape="circle" icon="search" />
           <Button icon="search">Search</Button>
           <Button type="primary" icon="download" size={size} />
@@ -53,7 +53,7 @@ class Buttons extends Component {
           <Button type="primary" shape="round" icon="download" size={size}></Button>
         </Card>
 
-        <Card title="Loading按钮">
+        <Card title="Loading按钮" className="Card_wrap">
           <Button type="primary" loading={this.state.loading}>确定</Button>
           <Button type="primary" shape="circle" loading={this.state.loading}></Button>
           <Button loading={this.state.loading}>确定</Button>
@@ -97,7 +97,7 @@ class Buttons extends Component {
           </ButtonGroup>
         </Card>
       
-        <Card title="按钮尺寸">
+        <Card title="按钮尺寸" className="Card_wrap">
           <RadioGroup value={size} onChange={this.handleChange}>
             <Radio value='small'>小</Radio>
             <Radio value='default'>中</Radio>

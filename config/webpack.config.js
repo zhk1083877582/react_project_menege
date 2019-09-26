@@ -112,7 +112,7 @@ module.exports = function(webpackEnv) {
       loaders.push({
         loader: require.resolve(preProcessor),
         options: {
-          modifyVars: { "@primary-color": "#f9c700" },
+          modifyVars: { "@primary-color": "#1890ff" },
           sourceMap: isEnvProduction && shouldUseSourceMap,
         },
       });
