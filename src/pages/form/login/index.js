@@ -1,15 +1,23 @@
 import React,{ Component } from "react";
-import { Card, Form, Icon, Input, Button, Checkbox } from "antd";
+import { Card, Form, Icon, Input, Button, Checkbox, Row, Col, message } from "antd";
 import './index.less';
 
 
 const FormItem = Form.Item
-class Login extends Component {
+class FormLogin extends Component {
   
   componentWillMount(){
     
   }
-  
+  handleSubmit=()=>{
+    let userInfo = this.props.form.getFieldsValue()
+    console.log(this.props.form,userInfo)
+    this.props.form.validateFields((err,values)=>{
+      if(!err){
+        message.success(`当前提交的用户名：${userInfo.username} 密码是：${userInfo.password}`)
+      }
+    })
+  }
   render (){
     const { getFieldDecorator } = this.props.form;
     return(
@@ -28,8 +36,8 @@ class Login extends Component {
         </Form>
        </Card>
        <Card title="登录水平表单" className='Card_wrap'> 
-        <Form layout='horizontal'>
-        <Form.Item>
+        <Form layout='horizontal' style={{width:'300px'}}>
+        <FormItem>
           {getFieldDecorator('username', {
             rules: [{ required: true, message: '请输入用户名!' }],
           })(
@@ -38,8 +46,8 @@ class Login extends Component {
               placeholder="Username"
             />,
           )}
-        </Form.Item>
-        <Form.Item>
+        </FormItem>
+        <FormItem>
           {getFieldDecorator('password', {
             rules: [{ required: true, message: '请输入密码!' }],
           })(
@@ -49,20 +57,31 @@ class Login extends Component {
               placeholder="Password"
             />,
           )}
-        </Form.Item>
-        <Form.Item>
-          {getFieldDecorator('remember', {
-            valuePropName: 'checked',
-            initialValue: true,
-          })(<Checkbox>Remember me</Checkbox>)}
-          <a className="login-form-forgot" href="">
-            Forgot password
-          </a>
-          <Button type="primary" htmlType="submit" className="login-form-button">
-            Log in
+        </FormItem>
+        <FormItem>
+          <Row>
+            <Col span={12}>
+              {getFieldDecorator('remember', {
+                valuePropName: 'checked',
+                initialValue: true,
+              })(<Checkbox>记住我</Checkbox>)}
+            </Col>
+            <Col span={12} style={{textAlign:'right'}}>
+              <a className="login-form-forgot" href="#">
+                忘记密码
+              </a>
+            </Col>
+          </Row>
+          
+          
+        </FormItem>
+
+        <FormItem>
+          <Button type="primary" htmlType="submit" onClick={this.handleSubmit} className="login-form-button">
+            登录
           </Button>
-          Or <a href="">注册</a>
-        </Form.Item>
+        </FormItem>
+
         </Form>
 
        </Card>
@@ -70,4 +89,4 @@ class Login extends Component {
     )
   }
 }
-export default Login;
+export default Form.create()(FormLogin);
