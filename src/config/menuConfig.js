@@ -51,7 +51,7 @@ export default [
       },
       {
         title:'注册',
-        key:'/admin/ui/reg'
+        key:'/admin/form/reg'
       }
     ]
   },

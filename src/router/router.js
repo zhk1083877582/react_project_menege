@@ -3,7 +3,7 @@ import { HashRouter, Route, Switch } from "react-router-dom";
 
 import App from '../App'
 
-import Login from '../pages/login'
+
 import Admin from '../Admin'
 
 import Home from '../pages/Home/index'
@@ -17,6 +17,9 @@ import Notification from '../pages/ui/notification'
 import Gallery from '../pages/ui/gallery'
 import Carousel from '../pages/ui/carousel'
 
+//form
+import Login from "../pages/form/login";
+import Register from "../pages/form/register";
 //404
 import Nomatch from "../pages/nomatch";
 export default class IRouter extends Component{
@@ -24,7 +27,6 @@ export default class IRouter extends Component{
     return(
       <HashRouter>
         <App>
-          <Route path='/login' component={Login}></Route>
           <Route path='/admin' render={() => 
             <Admin>
               <Switch>
@@ -37,6 +39,8 @@ export default class IRouter extends Component{
                 <Route path='/admin/ui/gallery' component={ Gallery }/>
                 <Route path='/admin/ui/carousel' component={ Carousel }/>
                 <Route path='/admin/ui/tabs' component={ Tabs } />
+                <Route path='/admin/form/login' component={ Login } />
+                <Route path='/admin/form/reg' component={ Register } />
                 <Route path='' component={ Nomatch } />
               </Switch>
             </Admin>

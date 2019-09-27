@@ -1,6 +1,6 @@
 import React,{ Component } from "react";
 import './index.less';
-class Login extends Component {
+class Register extends Component {
   constructor(props){
     super(props)
     this.state={
@@ -13,10 +13,10 @@ class Login extends Component {
   
   render (){
     return(
-      <div className="Login">
-        this is login
+      <div className="Register">
+        this is Register
       </div>
     )
   }
 }
-export default Login;
+export default Register;
