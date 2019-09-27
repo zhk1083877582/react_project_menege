@@ -39,7 +39,11 @@ class FormLogin extends Component {
         <Form layout='horizontal' style={{width:'300px'}}>
         <FormItem>
           {getFieldDecorator('username', {
-            rules: [{ required: true, message: '请输入用户名!' }],
+            rules: [
+              { required: true, message: '请输入用户名!' },
+              { min: 5,max:10, message:'长度不在范围内' },
+              { pattern: /^\w+$/g, message:'用户名必须为英文字母和数字' }
+            ],
           })(
             <Input
               prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -64,7 +68,7 @@ class FormLogin extends Component {
               {getFieldDecorator('remember', {
                 valuePropName: 'checked',
                 initialValue: true,
-              })(<Checkbox>记住我</Checkbox>)}
+              })(<Checkbox>记住密码</Checkbox>)}
             </Col>
             <Col span={12} style={{textAlign:'right'}}>
               <a className="login-form-forgot" href="#">
