@@ -1,4 +1,5 @@
 import React,{ Component } from "react";
+import { Card, Row, Col } from 'antd'
 import './index.less';
 class Gallery extends Component {
   constructor(props){
