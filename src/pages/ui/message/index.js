@@ -12,10 +12,7 @@ class Message extends Component {
     
   }
   openMsg=(type,content,duration)=>{
-    let config = {
-      content:content,
-      duration:duration
-    }
+    
     message[type](content)
   }
   render (){

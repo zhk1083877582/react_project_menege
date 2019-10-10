@@ -1,6 +1,5 @@
 import React,{Component} from 'react';
 import { Row, Col } from 'antd';
-import Router from './router/router'
 import Navleft from "./components/Navleft";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
