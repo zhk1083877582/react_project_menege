@@ -75,6 +75,16 @@ class Register extends Component {
                 </Select>,
               )}
             </FormItem>
+            <FormItem label='技术' {...formItemLayout}>
+              {getFieldDecorator('Technology', {
+              })(
+                <Select placeholder="请选择你的技术" mode='multiple'>
+                  <Option value="1">HTML</Option>
+                  <Option value="2">CSS</Option>
+                  <Option value="3">JavaScript</Option>
+                </Select>,
+              )}
+            </FormItem>
             
           </Form>
         </Card>
