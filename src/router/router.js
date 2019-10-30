@@ -40,7 +40,7 @@ export default class IRouter extends Component{
                 <Route path='/admin/ui/carousel' component={ Carousel }/>
                 <Route path='/admin/ui/tabs' component={ Tabs } />
                 <Route path='/admin/form/login' component={ Login } />
-                <Route path='/admin/form/reg' component={ Register } />
+                <Route path='/admin/form/register' component={ Register } />
                 <Route path='' component={ Nomatch } />
               </Switch>
             </Admin>
