@@ -23,9 +23,9 @@ class Register extends Component {
   };
 
   handleCancel = () => this.setState({ previewVisible: false });
-
+  
   handlePreview = async file => {
-    if (!file.url && !file.preview) {
+    if (file.thumbUrl) {
       file.preview = await getBase64(file.originFileObj);
     }
 
@@ -34,13 +34,22 @@ class Register extends Component {
       previewVisible: true,
     });
   };
+  handleChange = ({ fileList }) => this.setState({ fileList });
   componentWillMount(){
     console.log(this.props.form)
   }
-  
+  handleSubmit=()=>{
+    let userInfo = this.props.form.getFieldsValue()
+    console.log(this.props.form,userInfo)
+    this.props.form.validateFields((err,values)=>{
+      if(!err){
+        message.success(`当前提交的用户名：${userInfo.username} 密码是：${userInfo.password}`)
+      }
+    })
+  }
   render (){
     const { getFieldDecorator } = this.props.form;
-    const { previewVisible, previewImage, fileList } = this.state;
+    const { fileList } = this.state;
     const formItemLayout = {
       labelCol: {
         xs: { span: 24 },
@@ -49,6 +58,15 @@ class Register extends Component {
       wrapperCol: {
         xs: { span: 24 },
         sm: { span: 12 },
+      },
+    };
+    const OffsetLayout = {
+      wrapperCol: {
+        xs: 24,
+        sm: { 
+          span: 12,
+          offset: 4 
+        },
       },
     };
     const uploadButton = (
@@ -168,7 +186,25 @@ class Register extends Component {
                 </Upload>
               )}
             </FormItem>
-
+            
+            <FormItem {...OffsetLayout}>
+              {getFieldDecorator('Checkbox', {
+                
+                })(
+                  <Checkbox>我已阅读条约</Checkbox>
+                )
+              }
+            </FormItem>
+            <FormItem {...OffsetLayout}>
+              {getFieldDecorator('Checkbox', {
+                
+                })(
+                  <Button type="primary" htmlType="submit" onClick={this.handleSubmit} className="login-form-button">
+                    注册
+                  </Button>
+                )
+              }
+            </FormItem>
           </Form>
         </Card>
       </div>
