@@ -20,6 +20,9 @@ import Carousel from '../pages/ui/carousel'
 //form
 import Login from "../pages/form/login";
 import Register from "../pages/form/register";
+//table
+import BasicTable from '../pages/table/basicTable';
+
 //404
 import Nomatch from "../pages/nomatch";
 export default class IRouter extends Component{
@@ -41,6 +44,7 @@ export default class IRouter extends Component{
                 <Route path='/admin/ui/tabs' component={ Tabs } />
                 <Route path='/admin/form/login' component={ Login } />
                 <Route path='/admin/form/register' component={ Register } />
+                <Route path='/admin/table/basic' component={ BasicTable } />
                 <Route path='' component={ Nomatch } />
               </Switch>
             </Admin>
