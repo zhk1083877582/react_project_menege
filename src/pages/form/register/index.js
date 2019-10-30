@@ -1,18 +1,46 @@
 import React,{ Component } from "react";
-import { Card, Form, Button, Input, InputNumber, Checkbox, Radio, Select, DatePicker, TimePicker, Upload, Icon, message} from 'antd'
+import { Card, Form, Button, Input, InputNumber,Switch, Checkbox, Radio, Select, DatePicker, TimePicker, Upload, Icon, message} from 'antd'
+import moment from 'moment'
 import './index.less';
 import RadioGroup from "antd/lib/radio/group";
 
 const FormItem = Form.Item;
 const { Option } = Select;
+const TextArea = Input.TextArea;
+function getBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+}
 class Register extends Component {
-  
+  state = {
+    previewVisible: false,
+    previewImage: '',
+    fileList: [],
+  };
+
+  handleCancel = () => this.setState({ previewVisible: false });
+
+  handlePreview = async file => {
+    if (!file.url && !file.preview) {
+      file.preview = await getBase64(file.originFileObj);
+    }
+
+    this.setState({
+      previewImage: file.url || file.preview,
+      previewVisible: true,
+    });
+  };
   componentWillMount(){
     console.log(this.props.form)
   }
   
   render (){
     const { getFieldDecorator } = this.props.form;
+    const { previewVisible, previewImage, fileList } = this.state;
     const formItemLayout = {
       labelCol: {
         xs: { span: 24 },
@@ -23,6 +51,12 @@ class Register extends Component {
         sm: { span: 12 },
       },
     };
+    const uploadButton = (
+      <div>
+        <Icon type="plus" />
+        <div className="ant-upload-text">Upload</div>
+      </div>
+    );
     return (
       <div className="Register">
         <Card title='注册表单'>
@@ -85,7 +119,56 @@ class Register extends Component {
                 </Select>,
               )}
             </FormItem>
-            
+            <FormItem label='婚姻状况' {...formItemLayout}>
+              {getFieldDecorator('isMerried', {
+                valuePropName: 'checked',
+                initialValue:true
+              })(
+                <Switch />
+              )}
+            </FormItem>
+            <FormItem label='生日' {...formItemLayout}>
+              {getFieldDecorator('birthday', {
+                initialValue: moment('20191020') 
+              })(
+                <DatePicker />
+              )}
+            </FormItem>
+            <FormItem label='地址' {...formItemLayout}>
+              {getFieldDecorator('address', {
+                
+              })(
+                <TextArea
+                  placeholder="请输入地址"
+                  autosize={{ minRows: 3, maxRows: 5 }}
+                />
+              )}
+            </FormItem>
+
+            <FormItem label='时间控件' {...formItemLayout}>
+              {getFieldDecorator('Timepicker', {
+                
+              })(
+                <TimePicker></TimePicker>
+              )}
+            </FormItem>
+
+            <FormItem label='上传控件' {...formItemLayout}>
+              {getFieldDecorator('upload', {
+                
+              })(
+                <Upload 
+                  action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                  listType="picture-card"
+                  fileList={fileList}
+                  onPreview={this.handlePreview}
+                  onChange={this.handleChange}
+                >
+                  {fileList.length >= 8 ? null : uploadButton}
+                </Upload>
+              )}
+            </FormItem>
+
           </Form>
         </Card>
       </div>
