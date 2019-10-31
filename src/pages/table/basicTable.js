@@ -5,7 +5,8 @@ import { Card, Table} from 'antd'
 
 class basicTable extends Component{
   state= {
-    dataSource:[]
+    dataSource:[],
+    dataSource2:[]
   }
   componentDidMount(){
     const Data = [
@@ -70,6 +71,13 @@ class basicTable extends Component{
         <Card title='基础表格'>
           <Table 
             dataSource={this.state.dataSource} 
+            columns={columns}
+            pagination={false}
+          />
+        </Card>
+        <Card title='动态数据表格' style={{margin:'0 10px'}}>
+          <Table 
+            dataSource={this.state.dataSource2} 
             columns={columns}
             pagination={false}
           />
