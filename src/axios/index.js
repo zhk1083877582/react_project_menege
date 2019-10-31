@@ -18,6 +18,7 @@ export default class Axios{
 
   static ajax(option){
     let loading;
+    console.log(111)
     if(option.data && option.data.isShowloading !== false){
       loading = document.getElementById('ajaxLoading');
       loading.style.display = 'block'
@@ -35,7 +36,7 @@ export default class Axios{
           loading = document.getElementById('ajaxLoading');
           loading.style.display = 'none'
         }
-        if(response.status === '200'){
+        if(response.status === 200){
           let res = response.data
           if(res.code === 0){
             resolve(res);
@@ -50,9 +51,9 @@ export default class Axios{
             loading = document.getElementById('ajaxLoading');
             loading.style.display = 'none'
           }
-          return reject(response.data)
+          reject(response.data)
         }
-      })
+      }).catch((e) => {console.log(e)})
     });
   }
 }
