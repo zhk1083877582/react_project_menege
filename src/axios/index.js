@@ -20,20 +20,20 @@ export default class Axios{
     let baseUrl = ''
     return new Promise((resolve,reject)=>{
       axios({
-        url:option.url,
-        method:'get',
-        baseURL:baseUrl,
-        timeout:5000,
-        params:(option.data && option.data.params) || ''
+        url: option.url,
+        method: option.method,
+        baseURL: baseUrl,
+        timeout: 5000,
+        params: (option.data && option.data.params) || ''
       }).then((response)=>{
         if(response.status === '200'){
           let res = response.data
           if(res.code === 0){
-            resolve(res.data);
+            resolve(res);
           }else{
             Modal.info({
               title:'提示',
-              content:res.data.msg
+              content:res.msg
             })
           }
         }else{
