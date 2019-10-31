@@ -1,7 +1,7 @@
 
 
 import React,{Component} from 'react';
-import { Card, Table} from 'antd'
+import { Card, Table, Button, Modal, message} from 'antd'
 import axios from '../../axios';
 
 class basicTable extends Component{
@@ -37,7 +37,7 @@ class basicTable extends Component{
         birthday:'10-10'
       }
     ];
-    Data.map((item,index)=>{
+    Data.map((item,index) =>{
       item.key = index
     })
     this.setState({
@@ -69,6 +69,23 @@ class basicTable extends Component{
       selectedItem: record
     })
     console.log('当前选中',record)
+  }
+
+  //删除
+  handleDelete= ()=>{
+    let ids=[]
+    let rows = this.state.selectedRows
+    debugger;
+    rows.map((item)=>{
+      ids.push(item.id)
+    })
+    Modal.confirm({
+      title:'提示',
+      content:`你确定要删除${ids}数据嘛？`,
+      onOk:()=>{
+        message.success('删除成功！')
+      }
+    })
   }
   render(){
     const columns = [
@@ -113,6 +130,16 @@ class basicTable extends Component{
       type:'radio',
       selectedRowKeys
     }
+    const rowCheckSelection = {
+      type:'checkbox',
+      selectedRowKeys,
+      onChange:(selectedRowKeys,selectedRows)=>{
+        this.setState({
+          selectedRowKeys,//必需
+          selectedRows
+        })
+      }
+    }
     return(
       <div>
         <Card title='基础表格'>
@@ -127,6 +154,13 @@ class basicTable extends Component{
             dataSource={this.state.dataSource2} 
             columns={columns}
             pagination={false}
+          />
+        </Card>
+        <Card title='动态数据表格-单选' style={{margin:'10px 0'}}>
+          <Table 
+            dataSource={this.state.dataSource2} 
+            columns={columns}
+            pagination={false}
             rowSelection={ rowSelection }
             onRow={(record,index) => {
               return {
@@ -136,6 +170,15 @@ class basicTable extends Component{
                 }, // 点击行
               };
             }}
+          />
+        </Card>
+        <Card title='动态数据表格-复选' style={{margin:'10px 0'}}>
+        <Button type="primary" onClick={this.handleDelete}>删除</Button>
+          <Table 
+            dataSource={this.state.dataSource2} 
+            columns={columns}
+            pagination={false}
+            rowSelection={ rowCheckSelection }
           />
         </Card>
       </div>
