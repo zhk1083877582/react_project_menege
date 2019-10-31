@@ -2,6 +2,7 @@
 
 import React,{Component} from 'react';
 import { Card, Table} from 'antd'
+import axios from '../../axios';
 
 class basicTable extends Component{
   state= {
@@ -13,30 +14,43 @@ class basicTable extends Component{
       {
         id:'0',
         userName:'jack',
-        sex:'男',
-        state:'中国',
+        sex:1,
+        state:'1',
         age:'18',
         birthday:'01-10'
       },
       {
         id:'1',
         userName:'lili',
-        sex:'女',
-        state:'美国',
+        sex:2,
+        state:'3',
         age:'20',
         birthday:'11-20'
       },
       {
         id:'2',
         userName:'tom',
-        sex:'男',
-        state:'英国',
+        sex:1,
+        state:'3',
         age:'30',
         birthday:'10-10'
       }
     ]
     this.setState({
       dataSource:Data
+    })
+    this.GetDataSource2();
+  }
+  GetDataSource2 = ()=>{
+    axios.ajax({
+      url:'/table/list',
+      method:'get',
+      data:{
+        // params:1,
+        isShowloading:true
+      },
+    }).then((res)=>{
+      console.log(res);
     })
   }
   render(){
@@ -51,11 +65,22 @@ class basicTable extends Component{
       },
       {
         title:'性别',
-        dataIndex:'sex'
+        dataIndex:'sex',
+        render(num){
+          return num === 1? '男':'女'
+        }
       },
       {
         title:'国籍',
-        dataIndex:'state'
+        dataIndex:'state',
+        render(num){
+          let config = {
+            '1':'中国',
+            '2':'美国',
+            '3':'英国'
+          }
+          return config[num]
+        }
       },
       {
         title:'年龄',
