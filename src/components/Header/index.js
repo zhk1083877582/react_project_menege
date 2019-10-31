@@ -25,12 +25,11 @@ class Header extends Component {
     this.getWeatherAPIDate()
   }
   getWeatherAPIDate () {
-    console.log(1212)
     let city = 'beijing'
     Axios.jsonP({
       url:'https://api.map.baidu.com/telematics/v3/weather?output=json&ak=1a3cde429f38434f1811a75e1a90310c&location='+ encodeURIComponent(city)
     }).then((res)=>{
-      console.log(res)
+      // console.log(res)
       let data = res.results[0].weather_data[0];
       this.setState({
         weacher:data.wind,

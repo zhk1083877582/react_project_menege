@@ -16,7 +16,7 @@ export default class Axios{
     })
   }
 
-  static ajax(option){
+  static Get(option){
     let loading;
     console.log(111)
     if(option.data && option.data.isShowloading !== false){
@@ -27,7 +27,7 @@ export default class Axios{
     return new Promise((resolve,reject)=>{
       axios({
         url: option.url,
-        method: option.method,
+        method: 'get',
         baseURL: baseUrl,
         timeout: 5000,
         params: (option.data && option.data.params) || ''
@@ -37,7 +37,8 @@ export default class Axios{
           loading.style.display = 'none'
         }
         if(response.status === 200){
-          let res = response.data
+          let res = response.data.data
+          console.log(res)
           if(res.code === 0){
             resolve(res);
           }else{

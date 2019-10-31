@@ -7,7 +7,8 @@ import axios from '../../axios';
 class basicTable extends Component{
   state= {
     dataSource:[],
-    dataSource2:[]
+    dataSource2:[],
+    selectedItem:{}
   }
   componentDidMount(){
     const Data = [
@@ -35,23 +36,39 @@ class basicTable extends Component{
         age:'30',
         birthday:'10-10'
       }
-    ]
+    ];
+    Data.map((item,index)=>{
+      item.key = index
+    })
     this.setState({
       dataSource:Data
     })
     this.GetDataSource2();
   }
   GetDataSource2 = ()=>{
-    axios.ajax({
+    axios.Get({
       url:'/table/list',
-      method:'get',
       data:{
         // params:1,
         isShowloading:true
       },
     }).then((res)=>{
       console.log(res);
+      res.result.map((item,index)=>{
+        item.key = index
+      })
+      this.setState({
+        dataSource2 : res.result
+      })
     })
+  }
+  onRowCilck = (record,index)=>{
+    let selectKey = [index];
+    this.setState({
+      selectedRowKeys:selectKey,
+      selectedItem: record
+    })
+    console.log('当前选中',record)
   }
   render(){
     const columns = [
@@ -91,6 +108,11 @@ class basicTable extends Component{
         dataIndex:'birthday'
       }
     ] 
+    const {selectedRowKeys} = this.state
+    const rowSelection = {
+      type:'radio',
+      selectedRowKeys
+    }
     return(
       <div>
         <Card title='基础表格'>
@@ -100,11 +122,20 @@ class basicTable extends Component{
             pagination={false}
           />
         </Card>
-        <Card title='动态数据表格' style={{margin:'0 10px'}}>
+        <Card title='动态数据表格' style={{margin:'10px 0'}}>
           <Table 
             dataSource={this.state.dataSource2} 
             columns={columns}
             pagination={false}
+            rowSelection={ rowSelection }
+            onRow={(record,index) => {
+              return {
+                onClick: () => {
+                  console.log(123)
+                  this.onRowCilck(record,index);
+                }, // 点击行
+              };
+            }}
           />
         </Card>
       </div>
