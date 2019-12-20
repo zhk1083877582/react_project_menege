@@ -30,10 +30,10 @@ export default class IRouter extends Component{
     return(
       <HashRouter>
         <App>
-          <Route path='/admin' render={() => 
+          <Route path='/' render={() => 
             <Admin>
               <Switch>
-                <Route path='/admin/home' component={ Home }/>
+                <Route path='/' component={ Home }/>
                 <Route path='/admin/ui/bottons' component={ Bottons }/>
                 <Route path='/admin/ui/modals' component={ Modals }/>
                 <Route path='/admin/ui/Loading' component={ Loading }/>
