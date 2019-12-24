@@ -33,7 +33,7 @@ export default class IRouter extends Component{
           <Route path='/' render={() => 
             <Admin>
               <Switch>
-                <Route path='/' component={ Home }/>
+                <Route path='/admin/Home' component={ Home }/>
                 <Route path='/admin/ui/bottons' component={ Bottons }/>
                 <Route path='/admin/ui/modals' component={ Modals }/>
                 <Route path='/admin/ui/Loading' component={ Loading }/>

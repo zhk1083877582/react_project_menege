@@ -37,9 +37,9 @@ class basicTable extends Component{
         birthday:'10-10'
       }
     ];
-    Data.map((item,index) =>{
+    Data.map((item,index) =>
       item.key = index
-    })
+    )
     this.setState({
       dataSource:Data
     })
